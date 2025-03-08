@@ -1,0 +1,22 @@
+[module]
+[module.hugoVersion]
+min = "0.97.0"
+extended = true
+
+[params]
+# Enable Zen Mode for a minimalist layout
+# zenMode = true
+
+# Set themes for light and dark modes
+lightTheme = "emerald"
+darkTheme = "forest"
+
+avatar = "/face_zoomed.png"
+author = "Will Rohren"
+
+collapseNavItems = ["posts", "categories", "tags"]
+readingTimeWordsPerMinute = 20
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
