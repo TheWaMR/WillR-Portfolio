@@ -22,8 +22,8 @@ darkTheme = "forest"
 author = "Will Rohren"
 headerTitle = "Will Rohren"
 motto = "Mechanical engineering, Texas A&M, Dec 2026. Structures, test, and electronics."
-description = "Will Rohren, mechanical engineering student at Texas A&M graduating December 2026. Structures, test, and electronics projects: FEA-validated aircraft structures, strain-gauge DAQ, custom PCBs, and shop equipment."
-avatar = "/face_zoomed.png"
+description = "Will Rohren, mechanical engineering student at Texas A&M graduating December 2026. Structures, test, and electronics projects: FEA-validated aircraft structures, strain-gauge DAQ, custom PCBs, and the machines I run at the MEEN Rapid Prototyping Studio."
+avatar = "/headshot.jpg"
 favicon = "favicon.ico"
 images = ["/og-default.jpg"]   # fallback link-preview image for pages without their own
 email = "wmrohren@gmail.com"
@@ -35,14 +35,14 @@ showPrevNextPost = true         # previous/next project links at the bottom of e
 imageZoomableInPost = true      # click a photo to enlarge it
 
 # Navigation. Resume and Email stay visible; archive, categories, and tags collapse into the menu icon.
-reorderNavItems = ["resume", "email", "posts", "categories", "tags"]
+reorderNavItems = ["resume", "linkedin", "email", "posts", "categories", "tags"]
 collapseNavItems = ["posts", "categories", "tags"]
 readingTimeWordsPerMinute = 200
 
 [params.navItems]
 resume = { href = "/Will_Rohren_Resume.pdf", target = "_blank", title = "Resume" }
+linkedin = { href = "https://www.linkedin.com/in/williamrohren", target = "_blank", title = "LinkedIn" }
 email = { href = "mailto:wmrohren@gmail.com", title = "Email" }
-# linkedin = { href = "https://www.linkedin.com/in/YOUR-HANDLE", target = "_blank", title = "LinkedIn" }   # add "linkedin" to reorderNavItems when enabling
 
 [markup]
   [markup.goldmark]

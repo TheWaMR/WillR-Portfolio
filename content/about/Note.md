@@ -5,7 +5,6 @@ weight: 2
 ---
 
 I try to do my best to keep this reasonably updated, but my priorities are in the projects themselves.
-Documentation unfortunately tends to be a retroactive effort. 
 
 {{< details "Changelog" >}}
 5/11/26 - Content & structure overhaul

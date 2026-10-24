@@ -4,7 +4,7 @@ description: "Will Rohren, mechanical engineering student at Texas A&M graduatin
 date: 2025-02-10T23:56:48-06:00
 lastmod: 2026-10-23T12:00:00-05:00
 author: Will Rohren
-avatar: /face_zoomed.png
+avatar: /headshot.jpg
 cover: IMG_4742.JPG
 images:
   - IMG_4742.JPG

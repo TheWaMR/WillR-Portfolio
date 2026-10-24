@@ -14,8 +14,9 @@
 # Deploy checkout, if it ever ends up inside this folder again
 /thewamr.github.io/
 
-# OS and editor files
+# OS, editor, and Claude Code local files
 Thumbs.db
 desktop.ini
 .DS_Store
 .vscode/
+.claude/
