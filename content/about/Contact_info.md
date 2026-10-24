@@ -1,14 +1,13 @@
 ---
-title: "Contact Information"
-_build:
-  render: never
-  list: never
-  publishResources: false
+title: "Contact"
 draft: false
+weight: 3
 ---
 
-Email: wmrohren@gmail.com
+Email: [wmrohren@gmail.com](mailto:wmrohren@gmail.com)
 
-Resume: [here](./Resume_1-22-25.pdf) (last updated 1/22/25)
+Resume: [Will Rohren, resume (PDF)](/Will_Rohren_Resume.pdf), updated September 2026
 
-Feel free to email with any questions :)
+Older projects from middle and high school (3D prints, VEX Robotics, club builds) are on my [old Google Sites portfolio](https://sites.google.com/view/willrohren/home).
+
+Feel free to email with any questions.

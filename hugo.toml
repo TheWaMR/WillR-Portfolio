@@ -1,5 +1,50 @@
-baseURL = ''
-languageCode = 'en-us'
-title = "Will's Portfolio"
-theme = 'hugo-theme-dream-master'
+baseURL = "https://thewamr.com/"
+languageCode = "en-us"
+title = "Will Rohren"
+theme = "hugo-theme-dream-master"
 defaultContentLanguage = "en"
+enableRobotsTXT = true
+
+[pagination]
+pagerSize = 20
+
+[module]
+[module.hugoVersion]
+min = "0.97.0"
+extended = true
+
+[params]
+# Light and dark color schemes (daisyUI theme names)
+lightTheme = "emerald"
+darkTheme = "forest"
+
+# Identity. Shown in the top bar on every page, the browser tab, and link previews.
+author = "Will Rohren"
+headerTitle = "Will Rohren"
+motto = "Mechanical engineering, Texas A&M, Dec 2026. Structures, test, and electronics."
+description = "Will Rohren, mechanical engineering student at Texas A&M graduating December 2026. Structures, test, and electronics projects: FEA-validated aircraft structures, strain-gauge DAQ, custom PCBs, and shop equipment."
+avatar = "/face_zoomed.png"
+favicon = "favicon.ico"
+images = ["/og-default.jpg"]   # fallback link-preview image for pages without their own
+email = "wmrohren@gmail.com"
+siteStartYear = 2025
+
+# Project page behaviour
+showSummaryCoverInPost = true   # show the cover photo at the top of each project page
+showPrevNextPost = true         # previous/next project links at the bottom of each page
+imageZoomableInPost = true      # click a photo to enlarge it
+
+# Navigation. Resume and Email stay visible; archive, categories, and tags collapse into the menu icon.
+reorderNavItems = ["resume", "email", "posts", "categories", "tags"]
+collapseNavItems = ["posts", "categories", "tags"]
+readingTimeWordsPerMinute = 200
+
+[params.navItems]
+resume = { href = "/Will_Rohren_Resume.pdf", target = "_blank", title = "Resume" }
+email = { href = "mailto:wmrohren@gmail.com", title = "Email" }
+# linkedin = { href = "https://www.linkedin.com/in/YOUR-HANDLE", target = "_blank", title = "LinkedIn" }   # add "linkedin" to reorderNavItems when enabling
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

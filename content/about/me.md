@@ -1,15 +1,15 @@
 ---
 title: Me
-date: 2025-02-10T20:22:23-06:00
 draft: false
+weight: 1
 ---
 
 Howdy!
 
-I am William Rohren, and I am a junior Mechanical Engineering Major at Texas A&M University.
-This site serves as a portfolio to display my various projects, as well as a blog so that I
-can have a log of the things I do. 
+I'm William Rohren, a mechanical engineering student at Texas A&M, graduating in December 2026. I'm looking for a full-time structures, test, or design engineering role after graduation.
 
-I currently am a student worker for the Rapid Prototyping Studio within the MEEN department of A&M. Any posts/projects tagged with 'RPS' represent things I have done while working at the RPS. 
+Most of my work sits where mechanical and electrical meet: FEA-validated aircraft structures for SAE Aero, strain-gauge data acquisition for my SwRI capstone, custom PCBs, and bringing shop equipment online at the Rapid Prototyping Studio.
 
-I've done markdown with the RPS, but setting that up is entirely new to me. 
+Tools I use most: SolidWorks, Ansys, Femap/Nastran, Altium, KiCAD, Python, and the shop (CNC, plasma, 3D printing).
+
+![Will Rohren](/IMG_4208.jpg)

@@ -57,8 +57,9 @@
 {{ warnf "%s shortcode number %d in \"content/%s\" has an error in the \"src\" attribute." .Name .Ordinal .Page.File.Path -}}
 {{ end -}}
 
+{{/* autoplay implies muted + playsinline; browsers refuse to autoplay a video with sound */ -}}
 <figure class="video{{ with $class }} {{ . }}{{ end }}">
-<video controls preload="{{ $preload }}" {{ with $width }}width="{{ . }}"{{ end }} {{ with $poster }}poster="{{ . }}"{{ end }} {{ with $autoplay }}autoplay="{{ . }}"{{ end }} {{ with $loop }}loop="{{ . }}"{{ end }}>
+<video controls preload="{{ $preload }}" {{ with $width }}width="{{ . }}"{{ end }} {{ with $poster }}poster="{{ . }}"{{ end }} {{ with $autoplay }}autoplay muted playsinline{{ end }} {{ with $loop }}loop{{ end }}>
 <source src="{{ $src }}" {{ with $type }}type="{{ . }}"{{ end }}>
 </video>
 {{ with $caption -}}

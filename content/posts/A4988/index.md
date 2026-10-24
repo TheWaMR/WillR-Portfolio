@@ -1,61 +1,98 @@
 ---
 title: A4988 Stepper Motor Controller
-date: 2025-02-27T18:49:33-06:00
-lastmod: 2025-02-27T18:49:33-06:00
+description: "A four-channel A4988 stepper driver board with shift-register control. Built, never moved a motor, and taught me when not to design custom hardware: four $5 breakout modules would have done the job."
+date: 2024-10-10T18:49:33-06:00
+lastmod: 2026-10-23T12:00:00-05:00
 author: Will Rohren
 avatar: /face_zoomed.png
-# authorlink: https://author.site
-cover: image(17).png
+cover: Images/image(17).png
 images:
-  - image(17).png
+  - Images/image(17).png
 categories:
-  - category1
+  - Electronics
 tags:
-  - tag1
-  - tag2
-# nolastmod: true
+  - PCB Design
+  - Altium
+  - Stepper Motors
+  - Shift Register
+  - JLCPCB
+  - Personal Project
+  - Shelved
 draft: false
+weight: 9
 ---
 
-Goal: Learn about higher-powered digital electronics, and PCB design for integrated boards. This PCB was designed with my Atmega32U4 project in mind. 
+A custom four-channel A4988 stepper driver board, designed mostly so I could batch-order another PCB that month. Adafruit sells the same chip on a breakout for $5. That's the lesson.
+ 
 
-**STATUS:** I hit a wall :/
-
+**STATUS:** Built, never got a stepper to move with it. Retired in favor of off-the-shelf driver modules.
+ 
 <!--more-->
-
-## Motivation
-This was a spur-of-the-moment kind of project, because I wanted to batch order multiple PCB desgins from JLCPCB at once. Their PCBs are really cheap, but shipping from Hong Kong can be a bit expensive, so by ordering more at once, I save by only paying shipping once. 
-
-At the time I was working on a project which shall for now remain nameless, but it would require using 4 stepper motors at the same time. I also wanted to use my Atmega32U4 devboard to control it, so I started designing with those things in mind. 
-
-## Design
-
-![first design](image(17).png)
-
-I chose the A4988 stepper motor controller as my driver only because I was aware of its existance in a lot of stepper-motor-controller breakout boards from Adafruit and other large electronics sellers. I also would not need a ton of torque/speed, so it seemed like a good, well-rounded, choice. 
-
-The image above displays the first prototype design for the routing layout of each of the control signals for the chip. For each controller, there are 7 status inputs, as well as an 8th input for each step (typically used with PWM). As such, I turned to the IC that carried the Alarmclock project: the 74HC595 8-bit shift register, or a close cousin, the SN74LV595AR SMD. 
-
-![first design](image(39).png)
-
-After tiling 4 units together, I added some capacitors, added some holes for my devboard, and added a few other features, and I was ready for manufacturing.
-
-## Prototype
-I got it manufactured, and struggled a little bit with soldering the IC's on, because of the thicker outer copper, but after preheating with my hot plate, and using the hot air gun to push the solder over the edge, I was able to make solid connections for my first prototype. 
-
-I was reviewing the pcb design file in Altium when I took a closer look at the way I set up my shift registers, and realized that the first 
-*and* second units were both connected to the same data in line (instead of being chained together in series). 
-To fix this, I simply ignored the first slot, and only populated the 2{{< super "nd" >}}  and 3{{< super "rd" >}} positions.
-
-
-![second prototype](proto.jpg)
-
-The morning of 2/6/25, I tried using it for the first time, in combination with the second revision of my AtMega32U4 devboard. 
-
-I was unsucessful. 
-
-I tried switching my microcontroller to my trusted Arduino Nano, but that didn't work either. 
-I eventually called it a night, and left it for later.
-As of 3/1/25, I have yet to make another attempt at getting it to work, and I can't quite say *why* it might've failed.
-
-![late night](late_night.jpg)
+ 
+# {{< homelink "Back to Home" >}}
+ 
+---
+ 
+### Background
+ 
+In October 2024 I was about to send a JLCPCB order for the [ATmega32U4 dev board](/posts/atmega32u4_test/), and shipping from Hong Kong is the dominant cost on small JLCPCB orders. Anything else I could finish a design for in the same window would essentially ride along for free. I had a project in mind that would need four stepper motors driven simultaneously, ideally controlled by the dev board itself, so a four-channel driver PCB landed on the design list almost by default.
+ 
+The chip choice didn't get much thought. The A4988 is the driver on most of the cheap stepper breakouts you can buy, the project didn't need especially high torque or microstepping resolution, and "use the chip everyone else uses" felt like a reasonable starting point.
+ 
+---
+ 
+### Project Timeline
+ 
+{{< details "**Design (October 2024)**" >}}
+ 
+Each A4988 needs eight control signals: seven configuration \/ status pins plus a step input typically driven with PWM. Four of those tiled together would have been thirty-two GPIO lines, well past what the dev board could comfortably spare, so the obvious move was to multiplex through shift registers. Specifically the SN74LV595AR, the SMD cousin of the 74HC595 I'd used on the [alarm clock](/posts/alarmclock/). One register's worth of bits per driver, chained in series, clocked out from the MCU. 
+ 
+![Single-channel signal routing](Images/image(17).png)
+*Initial single-channel routing for the A4988 control signals.*
+ 
+After getting one channel routed cleanly, I tiled four copies together, added decoupling caps at each driver, broke out mounting holes for the dev board to sit on top of, and sent it.
+ 
+![Tiled four-channel layout](Images/image(39).png)
+*Final layout. Four A4988s tiled, shift register chain along the bottom, dev board mounting pattern up top.*
+ 
+{{< /details >}}
+ 
+{{< details "**Assembly & The Shift Register Bug (Late 2024)**" >}}
+ 
+Boards came back with thicker outer copper than I'd worked with on prior projects, which made hand-soldering the QFN-style packages slower than expected. The fix was to preheat the whole board on a hot plate first, then use the hot-air gun to flow solder over the IC pads. Solid connections, just slow.
+ 
+Reviewing the layout in Altium one more time after assembly, I caught something that should have been caught at schematic review: the *first* and *second* shift registers in my chain were both connected to the same data-in line, instead of the second register's data-in being driven by the first register's serial-out. The chain wasn't actually a chain. Two registers were running in parallel where I'd thought I had a cascade.
+ 
+Rather than rework the populated board, I skipped the first driver position entirely and populated only positions two and three for testing. Two channels of stepper drive was plenty to validate the rest of the design.
+ 
+![Assembled prototype](Images/proto.jpg)
+*Assembled prototype with positions two and three populated. Position one left empty as a workaround for the shift register chain bug.*
+ 
+{{< /details >}}
+ 
+{{< details "**First Power-On & The Walk-Away (February 2025)**" >}}
+ 
+Morning of February 6, 2025, I tried to actually move a stepper with it for the first time, using the V1.1 [ATmega32U4 dev board](/posts/atmega32u4_test/) as the controller. The motor didn't move. Nothing on the scope where I'd expected step pulses, no thermal indication on the drivers, just silence.
+ 
+I swapped to a known-good Arduino Nano to rule out anything dev-board-specific. Same result. I poked at it for another hour or two before calling it a night.
+ 
+![Late-night debug session](Images/late_night.jpg)
+*The debugging session that didn't go anywhere.*
+ 
+I never came back to it for a serious second pass, and I never determined the root cause. Best guess in retrospect is that the shift-register workaround left state I wasn't accounting for in firmware. Running two parallel registers and treating them as a chain in code shifts the wrong values onto the wrong control pins. I never validated that hypothesis on the bench.
+ 
+{{< /details >}}
+ 
+{{< details "**In Retrospect (2025 – )**" >}}
+ 
+The real lesson from this one isn't technical. It's economic. A4988 breakout boards from Adafruit, Pololu, or any of a dozen other vendors run about $5 apiece. Four of them on a strip of perfboard, jumper-wired into the dev board, would have done exactly what this PCB was designed to do. Known-good driver layout, zero risk of a shift-register-chain mistake reaching manufacturing, about $20 of parts instead of roughly $60 for the JLCPCB run. And at the end of it I'd have actually had working hardware.
+ 
+There's a class of PCB project that's worth doing custom: something integrating multiple subsystems, something with a form factor that doesn't exist off-the-shelf, something that genuinely teaches a new technique. This wasn't one of those. It was four copies of a circuit that already exists as a commodity module, and the value I got out of it was almost entirely as a negative example. It taught me when *not* to design custom hardware.
+ 
+For any future stepper-driving needs, I'm just buying the modules.
+ 
+{{< /details >}}
+ 
+---
+ 
+# {{< homelink "Back to Home" >}}

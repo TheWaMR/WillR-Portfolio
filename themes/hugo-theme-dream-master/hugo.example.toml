@@ -4,12 +4,12 @@ languageCode = "en"
 title = "Hugo Theme Dream"
 theme = "dream"
 
+
 # [services]
 # [services.disqus]
 # shortname = ""
 # [services.googleAnalytics]
 # ID = ""
-
 [params]
 # zenMode = true
 
